@@ -15,8 +15,15 @@ resposta = "sim"
 while resposta != "não":
     elemento = input("adicione o elemento: ")
     position = int(input("em que posição? "))
-    linkedlist.insert(position, elemento)
-    linkedlist.pop(position)
+    if position < 0:
+        linkedlist.insert(position, elemento)
+        linkedlist.pop(position)
+    else:
+        position-=1
+        linkedlist.pop(position)
+        linkedlist.insert(position, elemento)
+
+
     resposta = input("\ndeseja adicionar/substituir mais um?(sim/não) ")
 
 print("\nsua LinkedList ficou assim:\n")
