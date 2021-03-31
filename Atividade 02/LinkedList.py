@@ -1,5 +1,6 @@
 """
-#Lista Encadeada - cada elemento é um registro que além de obter seu dado em si
+Lista Encadeada - 
+cada elemento é um registro que além de obter seu dado em si
 também possui um ponteiro somente para o próximo elemento da lista.
 """
 
