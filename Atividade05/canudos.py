@@ -15,17 +15,17 @@ comportamento de sua função.
 
 
 def triangulopossivel(l1, l2, l3):
-    list = [float(l1), float(l2), float(l3)]
+    lista = [float(l1), float(l2), float(l3)]
     # checa se tem zero
-    if list.count(0.0) != 0:
-        return 0, print("um é zero")
+    if lista.count(0.0) != 0:
+        return 0, print("um é zero :(")
     # checa se um lado é maior ou igual a soma dos outros dois
-    for i, j in enumerate(list):
-        if j >= sum(list) - j:
+    for i, j in enumerate(lista):
+        if j >= sum(lista) - j:
             return 0, print(f"o lado {j} é maior que os outros 2 lados")
     # se não achar erros então é possível
     return 1, print("é possível sim")
 
 
-lado1, lado2, lado3 = input("lados:\n").split(" ")
+lado1, lado2, lado3 = input("3 lados do triângulo:\n").split(" ")
 triangulopossivel(lado1, lado2, lado3)
