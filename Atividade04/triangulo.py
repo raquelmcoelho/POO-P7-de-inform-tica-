@@ -9,19 +9,18 @@ declara o tipo do triângulo.
 """
 
 
-def triangulo(lado1, lado2, lado3):
-    lado1, lado2, lado3 = float(lado1), float(lado2), float(lado3)
-
+def triangulo():
+    l1, l2, l3 = (input("insira os três lados de um triângulo pondo espaço entre eles:\n").split(" "))
+    l1, l2, l3 = float(l1), float(l2), float(l3),
     # equilátero
-    if lado1 == lado2 and lado2 == lado3:
+    if l1 == l2 and l2 == l3:
         print("esse triângulo é equilátero")
     # escaleno
-    elif lado1 != lado2 and lado2 != lado3 and lado3 != lado1:
+    elif l1 != l2 and l2 != l3 and l3 != l1:
         print("esse triângulo é escaleno")
     # isósceles
     else:
         print("esse triângulo é isósceles")
 
 
-l1, l2, l3 = input("insira os três lados de um triângulo pondo espaço entre eles:\n").split(" ")
-triangulo(l1, l2, l3)
+triangulo()

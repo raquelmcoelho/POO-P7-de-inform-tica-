@@ -1,1 +1,1 @@
-fuction with triangles
+Fuction with triangles

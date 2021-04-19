@@ -1,1 +1,1 @@
-Random module, shuffle method, slicing, sort method.
+Random module and methods, shuffle method, slicing, sort method.
