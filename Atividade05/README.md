@@ -1,1 +1,2 @@
 
+Triangle Function

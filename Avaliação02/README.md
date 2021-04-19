@@ -1,0 +1,1 @@
+String translate method, dictionaries methods.
