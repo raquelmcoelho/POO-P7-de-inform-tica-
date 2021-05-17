@@ -7,7 +7,7 @@
             data      - informado.
             cliente   - informado.
             items     - informado
-            valornota - calculado. 
+            valornota - calculado.
 """
 import datetime
 from cliente import Cliente
@@ -42,7 +42,9 @@ class NotaFiscal:
         linha = 120 * "-"
 
         # string de cima da nota fiscal com os dados do cliente
-        stringclient = ("\n%3s\n NOTA FISCAL%90sData:%s\n Cliente:%s%12sNome:%s\n CPF/CNPJ:%s\n%s\n ITENS\n%s\n"
+        stringclient = ("\n%3s\n NOTA FISCAL%90sData:%s\n"
+                        + " Cliente:%s%12sNome:%s\n"
+                        + " CPF/CNPJ:%s\n%s\n ITENS\n%s\n"
                         + " Seq%23sDescrição%26sQTD%7sValor Unit%10sPreço\n%s\n") % (linha, "",
                                                                                      self._data.strftime("%d/%m/%Y"),
                                                                                      self._cliente.get_id, "",
@@ -67,7 +69,7 @@ class NotaFiscal:
         notafiscal = stringclient + stringprodutos + stringfinal
 
         # opção de ter uma nota fiscal colorida através do format, apenas um extra
-        notafiscal_colorida = "\033[01m\033[40m\033[106m{}".format(notafiscal)
+        notafiscal_colorida = "\033[01m\033[40m\033[92m{}".format(notafiscal)
 
         # aqui retorna a normal e a colorida e a pessoa escolhe qual quer na hora de chamar
         return notafiscal, notafiscal_colorida

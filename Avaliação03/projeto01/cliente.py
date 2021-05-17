@@ -13,11 +13,12 @@
 
 
 class Cliente:
-    def __init__(self, idclient, nome, codigo, cnpjcpf):
+    def __init__(self, idclient, nome, codigo, cnpjcpf, tipo):
         self._id = idclient
         self._nome = nome
         self._codigo = codigo
         self._cnpjcpf = cnpjcpf
+        self._tipo = tipo
 
     @property
     def get_nome(self):

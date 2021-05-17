@@ -10,7 +10,7 @@ from itemnotafiscal import ItemNotaFiscal
 
 def main():
     # mudei nome para ficar que nem o do exemplo
-    cli = Cliente(1, "Jose Simão Da Silva", 100, "200.100.345-34")
+    cli = Cliente(1, "Jose Simão Da Silva", 100, "200.100.345-34", 1)
     
     p1 = Produto(1, 100, "Arroz Agulha", 5.5)
     it1 = ItemNotaFiscal(1, 1, 10, p1)
@@ -30,7 +30,7 @@ def main():
     nf.calcular_nota_fiscal()
     print("Valor Nota Fiscal= " + str(nf.calcular_nota_fiscal()))
     # escolher se quer a nota fiscal colorida ou normal a partir do índice da lista de duas notas que ele vai retornar
-    print(nf.imprimir_nota_fiscal()[0])
+    print(nf.imprimir_nota_fiscal()[1])
 
 
 if __name__ == '__main__':
