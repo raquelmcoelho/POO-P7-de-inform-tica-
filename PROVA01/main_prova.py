@@ -1,4 +1,4 @@
-from FolhaPagamento import FolhaPagamento
+from FolhaPagamento import *
 from Colaborador import Colaborador
 from MovimentoFolha import MovimentoFolha
 
@@ -23,7 +23,6 @@ MF07 = MovimentoFolha(300, "Salario", 4500.00, "P")
 MF08 = MovimentoFolha(300, "Plano Saúde", 1000.00, "P")
 MF09 = MovimentoFolha(300, "Pensão", 600.00, "D")
 
-
 # inserindo movimentos
 FP.inserir_movimento(MF01)
 FP.inserir_movimento(MF02)
@@ -44,6 +43,7 @@ CL02.inserir_movimentos(MF06)
 CL03.inserir_movimentos(MF07)
 CL03.inserir_movimentos(MF08)
 CL03.inserir_movimentos(MF09)
+
 
 print(CL01.calcular_salario(FP))
 print(CL02.calcular_salario(FP))

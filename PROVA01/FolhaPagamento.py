@@ -1,5 +1,7 @@
 from Colaborador import *
 
+COLABORADORES = set()
+
 
 class FolhaPagamento:
     def __init__(self, mes, tot_descontos, tot_proventos, ano):
@@ -10,38 +12,33 @@ class FolhaPagamento:
         self._movimentos = []
 
     def calcular_folha(self):
-        totproventos, totdescontos, totsalariospadrao, totsalarios = self._dados_folha()
-        totpagar = totproventos + totsalarios - totdescontos
-        string = f"""
-         Total de Salários Antes = {totsalariospadrao}
-         Total de Salários Atual = {totsalarios} 
-         Total de Proventos= {totproventos}
-         Total de Descontos = {totdescontos}
-         Total a Pagar = {totpagar}"""
-        return string
+        linha = 120 * "-" + "\n"
+        totproventos, totdescontos,  totsalarios = self._dados_folha()
+        totpagar = totproventos - totdescontos
+        string = f"{linha}\nTotal de Salários Atual = {totsalarios} \nTotal de Proventos= {totproventos}"\
+                 + f"\nTotal de Descontos = {totdescontos}\nTotal a Pagar = {totpagar}\n{linha}"
+
+        return "\033[01m\033[107m\033[30m{}".format(string)
 
     def inserir_movimento(self, move):
         if isinstance(move, MovimentoFolha):
             self._movimentos.append(move)
+            self.adicionar_colaboradores(move.get_idcolaborador)
+
+    @staticmethod
+    def adicionar_colaboradores(idcolab):
+        COLABORADORES.add(idcolab)
 
     def _dados_folha(self):
         tot_proventos = 0
         tot_descontos = 0
-        tot_salarios = {0}
-        tot_salariosatuais = 0
-        for movimento in self._movimentos:
-            if movimento.get_tipomovimento == "Provento":
-                tot_proventos += movimento.get_valor
-
-            elif movimento.get_tipomovimento == "Desconto":
-                tot_descontos += movimento.get_valor
-
-            if movimento.get_descricao == "Salario":
-                tot_salariosatuais += movimento.get_valor
-
-            tot_salarios.add(get_salario(movimento.get_idcolaborador))
-
-        return tot_proventos, tot_descontos, sum(tot_salarios), tot_salariosatuais
+        tot_salarios = 0
+        for colaborador in COLABORADORES:
+            prov, desc, salar = self.dados_colaborador(colaborador)
+            tot_proventos += prov
+            tot_descontos += desc
+            tot_salarios += salar
+        return tot_proventos, tot_descontos, tot_salarios
 
     def dados_colaborador(self, idcolab):
         tot_proventos = 0
@@ -51,7 +48,6 @@ class FolhaPagamento:
             if movimento.get_idcolaborador == idcolab:
 
                 if movimento.get_tipomovimento == "Provento":
-
                     tot_proventos += movimento.get_valor
 
                 elif movimento.get_tipomovimento == "Desconto":
