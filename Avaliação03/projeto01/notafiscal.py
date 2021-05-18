@@ -69,7 +69,7 @@ class NotaFiscal:
         notafiscal = stringclient + stringprodutos + stringfinal
 
         # opção de ter uma nota fiscal colorida através do format, apenas um extra
-        notafiscal_colorida = "\033[01m\033[107m\033[30m{}".format(notafiscal)
+        notafiscal_colorida = "\033[01m\033[40m\033[92m{}".format(notafiscal)
 
         # aqui retorna a normal e a colorida e a pessoa escolhe qual quer na hora de chamar
         return notafiscal, notafiscal_colorida

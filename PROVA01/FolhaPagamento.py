@@ -18,7 +18,7 @@ class FolhaPagamento:
         string = f"{linha}\nTotal de Salários Atual = {totsalarios} \nTotal de Proventos= {totproventos}"\
                  + f"\nTotal de Descontos = {totdescontos}\nTotal a Pagar = {totpagar}\n{linha}"
 
-        return "\033[01m\033[107m\033[30m{}".format(string)
+        return "\033[01m\033[40m\033[97m{}".format(string)
 
     def inserir_movimento(self, move):
         if isinstance(move, MovimentoFolha):
