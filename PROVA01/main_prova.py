@@ -44,9 +44,9 @@ CL03.inserir_movimentos(MF07)
 CL03.inserir_movimentos(MF08)
 CL03.inserir_movimentos(MF09)
 
+if __name__ == '__main__':
+    print(CL01.calcular_salario(FP))
+    print(CL02.calcular_salario(FP))
+    print(CL03.calcular_salario(FP))
 
-print(CL01.calcular_salario(FP))
-print(CL02.calcular_salario(FP))
-print(CL03.calcular_salario(FP))
-
-print(FP.calcular_folha())
+    print(FP.calcular_folha())

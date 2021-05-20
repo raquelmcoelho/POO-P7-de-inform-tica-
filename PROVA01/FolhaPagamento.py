@@ -13,10 +13,11 @@ class FolhaPagamento:
 
     def calcular_folha(self):
         linha = 120 * "-" + "\n"
-        totproventos, totdescontos,  totsalarios = self._dados_folha()
-        totpagar = totproventos - totdescontos
-        string = f"{linha}\nTotal de Salários Atual = {totsalarios} \nTotal de Proventos= {totproventos}"\
-                 + f"\nTotal de Descontos = {totdescontos}\nTotal a Pagar = {totpagar}\n{linha}"
+        totsalarios = self._dados_folha()
+        totpagar = self._total_proventos - self._total_descontos
+        string = f"FOLHA DE PAGAMENTO {self._mes}/{ self._ano}"\
+                 f"\n{linha}\nTotal de Salários Atual = {totsalarios} \nTotal de Proventos= {self._total_proventos}"\
+                 + f"\nTotal de Descontos = {self._total_descontos}\nTotal a Pagar = {totpagar}\n{linha}"
 
         return "\033[01m\033[40m\033[97m{}".format(string)
 
@@ -30,15 +31,13 @@ class FolhaPagamento:
         COLABORADORES.add(idcolab)
 
     def _dados_folha(self):
-        tot_proventos = 0
-        tot_descontos = 0
         tot_salarios = 0
         for colaborador in COLABORADORES:
             prov, desc, salar = self.dados_colaborador(colaborador)
-            tot_proventos += prov
-            tot_descontos += desc
+            self._total_proventos += prov
+            self._total_descontos += desc
             tot_salarios += salar
-        return tot_proventos, tot_descontos, tot_salarios
+        return tot_salarios
 
     def dados_colaborador(self, idcolab):
         tot_proventos = 0
