@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br>
+    <h3 style="margin: auto;text-align: center">DELETE - Delete seus dados</h3><br>
+    <h5 style="margin: auto;text-align: center">(identifique o id desejado)</h5>
+    <hr/>
+    <form action="{{ request.path }}" method="POST" style="text-align:center;width: 160px ;margin: auto">
+        <label for="idcliente"> Id Cliente
+            <input type="text" name="idcliente" placeholder="Id..."/><br>
+        </label><br><br>
+        <input type="submit" value="Submit"/>
+    </form>
+    <hr/>
+{% endblock %}

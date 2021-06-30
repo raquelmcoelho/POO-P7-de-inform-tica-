@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <title>{% block title %}{{ super() }} - Create {% endblock %}</title>
+
+    <body>
+    <br>
+    <h3 style="margin: auto;text-align: center">CREATE - Crie seus dados</h3><br>
+    <h5 style="margin: auto;text-align: center">(crie seu cliente e visualize ele no READ)</h5>
+    <hr/>
+    <form action="{{ request.path }}" method="POST" style="text-align:center;width: 160px ;margin: auto">
+        <label for="nome">Nome
+            <input type="text" name="nome" placeholder="Nome..."/><br>
+        </label><br><br>
+        <label for="codigo">Código
+            <input type="text" name="codigo" placeholder="Codigo..."/><br>
+        </label><br><br>
+        <label for="cnpjcpf">CNPJ/CPF
+            <input type="text" name="cnpjcpf" placeholder="CNPJ ou CPF..."/><br>
+        </label><br><br>
+        <input type="submit" value="Submit"/>
+    </form>
+
+
+{% endblock %}

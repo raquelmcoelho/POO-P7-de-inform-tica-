@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Bunny{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+
+<main>
+    <h1 class="visually-hidden"></h1>
+    <div class="b-example-divider"></div>
+    <header class="p-3 bg-dark text-white">
+        <div class="container-sm">
+            <div class="flex-wrap align-items-center justify-content-left justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"></a>
+                <div class="text-end">
+                    <a href="/">
+                        <button type="button" class="btn btn-outline-light me-2">SOBRE</button>
+                    </a>
+                    <a href="/create">
+                        <button type="button" class="btn btn-outline-light me-2">CREATE</button>
+                    </a>
+                    <a href="/read">
+                        <button type="button" class="btn btn-outline-light me-2">READ</button>
+                    </a>
+                    <a href="/update">
+                        <button type="button" class="btn btn-outline-light me-2">UPDATE</button>
+                    </a>
+                    <a href="/delete">
+                        <button type="button" class="btn btn-outline-danger">DELETE</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+</main>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+                <li>
+                    <div class="alert alert-dark" role="alert">
+                        {{ message }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+{% block content %}
+{% endblock %}
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

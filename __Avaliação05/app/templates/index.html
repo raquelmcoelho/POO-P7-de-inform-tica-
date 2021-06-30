@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <title>{% block title %}{{ super() }} - Index{% endblock %}</title>
+
+    <div class="row marketing" style="text-align:left; text-justify: distribute-center-last; margin:auto;width: 500px ">
+        <img src="../static/images/rabbit.ico" alt="Logo Coelho"
+             style="width: 200px;height: 200px; text-align: center;margin: auto">
+        <hr/>
+        <div class="col-lg-16">
+            <h4>O SITE COELHO</h4>
+            <p>Seja bem vindo ao site criado por Raquel Maciel Coelho</p>
+            <br>
+            <hr/>
+            <h4>SOBRE NÓS</h4>
+            <p>Esta aplicação tem o intuito de explorar conceitos de CRUD no manuseio de<br>dados
+                e também conhecer sobre rotas e formulários no micro framework<br>para aplicações web Flask</p>
+            <br>
+            <hr/>
+            <h4>TUTORIAL</h4>
+            <p>Para conhecer um pouco mais sobre cada um dos conceitos de CRUD<br><br>
+                C- CREATE<br>
+                R- READ<br>
+                U- UPDATE<br>
+                D -DELETE<br><br>
+                vá passeando pelo nosso site através dos botões de menu</p>
+
+        </div>
+    </div>
+
+{% endblock %}

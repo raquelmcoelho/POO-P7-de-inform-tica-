@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br>
+    <h3 style="margin: auto;text-align: center">UPDATE - Atualize seus dados existentes</h3><br>
+    <hr/>
+    <form action="{{ request.path }}" method="POST" style="text-align:center;width: 160px ;margin: auto">
+        <label for="idcliente"> Id Cliente que deseja modificar
+            <input type="text" name="idcliente" placeholder="Id Cliente Desejado..."/><br>
+        </label><br><br>
+
+        <hr/>
+        <h5 style="margin: auto;text-align: center">Insira os novos dados do cliente</h5>
+        <label for="nome">Nome
+            <input type="text" name="nome" placeholder="Nome..."/><br>
+        </label><br><br>
+        <label for="codigo">Código
+            <input type="text" name="codigo" placeholder="Codigo..."/><br>
+        </label><br><br>
+        <label for="cnpjcpf">CNPJ/CPF
+            <input type="text" name="cnpjcpf" placeholder="CNPJ ou CPF..."/><br>
+        </label><br><br>
+        <input type="submit" value="Submit"/>
+    </form>
+    <hr/>
+{% endblock %}

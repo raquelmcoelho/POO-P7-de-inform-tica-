@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <ul style="text-align: left; margin: auto">
+        <br>
+        <h3 style="margin: auto;text-align: center">READ - Leia seus dados</h3><br>
+        <h5 style="margin: auto;text-align: center">(Aqui visualizamos os objetos clientes do banco de dados)</h5>
+        {% for cliente in clientes %}
+            <hr/>
+            {% for categorias in cliente %}
+                <li> &nbsp {{ categorias }} &nbsp</li>
+            {% endfor %}
+            <br>
+            <hr/>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
