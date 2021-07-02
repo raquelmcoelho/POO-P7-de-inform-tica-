@@ -1,2 +1,7 @@
-Projeto de Flask para conhecer melhor o framework e explorar seus decoradores
-de rota utilizando do CRUD.
+Flask Project with:
+
+CRUD 
+API rest
+Bootstrap
+MVC model
+Jinja2
