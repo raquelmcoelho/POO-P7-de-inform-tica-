@@ -7,4 +7,4 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://Raquel:12345678@127.0.0.1:3306/
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config["SQLALCHEMY_ECHO "] = True
 
-from __Avaliação07.aplicattion.Controller.default import *
+from __Avaliação07.application.Controller.default import *

@@ -1,7 +1,7 @@
 from flask import Response, request
 import json
-from __Avaliação07.aplicattion import app
-from __Avaliação07.aplicattion.Model.CRUD import *
+from __Avaliação07.application import app
+from __Avaliação07.application.Model.CRUD import *
 
 
 def gera_response(status, nome_conteudo, conteudo, mensagem=None):

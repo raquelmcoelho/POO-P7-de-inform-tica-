@@ -1,4 +1,4 @@
-from __Avaliação07.aplicattion.Model.Models import *
+from __Avaliação07.application.Model.Models import *
 
 ########################################################################################################################
 
