@@ -16,6 +16,16 @@ def gera_response(status, nome_conteudo, conteudo, mensagem=None):
 def index():
     return 'Página Index'
 
+"""
+  CLIENTE ROUTES
+
+  get    api/clientes       : Ler todos os clientes
+  get    api/cliente/{id}   : ler um cliente
+  post   api/cliente        : Cria um novo cliente
+  put    api/cliente/{id}   : Atualiza um cliente
+  delete api/cliente/{id}   : Exclui um cliente
+"""
+
 
 @app.route("/api/clientes", methods=["GET"])
 def get_clientes():
@@ -183,7 +193,7 @@ def get_imprimenf_id(idnota):
 
 @app.route("/api/itensnf/<int:idnota>", methods=["GET"])
 def get_itensnf(idnota):
-    return gera_response(200, "Ler todos os Itens da Nota Fiscal", read_nota(idnota)["Itens"])
+    return gera_response(200, "Ler todos os Itens da Nota Fiscal", read_nota(idnota))
 
 
 @app.route("/api/itemnf/<int:iditem>", methods=["GET"])

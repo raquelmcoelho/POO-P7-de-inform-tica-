@@ -60,11 +60,13 @@ class ItemNotaFiscal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sequencial = db.Column(db.Integer)
     quantidade = db.Column(db.Integer)
-    produto_id = db.Column(db.Integer, db.ForeignKey("Produto.id"))
-    nota_id = db.Column(db.Integer, db.ForeignKey("NotaFiscal.id"))
+    produto_id = db.Column(db.Integer, db.ForeignKey("Produto.id", ondelete="CASCADE"))
+    nota_id = db.Column(db.Integer, db.ForeignKey("NotaFiscal.id", ondelete="CASCADE"))
 
-    produto = db.relationship("Produto", foreign_keys=produto_id)
-    nota = db.relationship("NotaFiscal", foreign_keys=nota_id)
+    produto = db.relationship("Produto", foreign_keys=produto_id,
+                              cascade="all, delete", passive_deletes=True)
+    nota = db.relationship("NotaFiscal", foreign_keys=nota_id,
+                           cascade="all, delete", passive_deletes=True)
 
     id_itens = 0
 
@@ -77,8 +79,6 @@ class ItemNotaFiscal(db.Model):
 
         # adendos
         self.sequencial = len(ItemNotaFiscal.query.filter_by(nota_id=nota_id).all())
-        self.produto = self.get_produto()
-        self.descricao = self.produto.descricao
         self.valor_item = self.quantidade * self.produto.valor_unitario
 
     def __repr__(self):
@@ -89,10 +89,13 @@ class ItemNotaFiscal(db.Model):
 
     def dict(self):
         return {'ID': self.id, 'Sequencial': self.sequencial, 'Valor Unitário': self.produto.valor_unitario,
-                'Quantidade': self.quantidade, 'Descrição': self.descricao, 'Valor': self.valor_item}
+                'Quantidade': self.quantidade, 'Descrição': self.get_produto(),
+                'Valor': self.get_produto().valor_unitario * self.quantidade}
 
     def get_produto(self):
-        return Produto.query.filter_by(id=int(self.produto_id)).first()
+        p = Produto.query.filter_by(id=int(self.produto_id)).first()
+        print(p.dict())
+        return p.dict()
 
     def get_nota(self):
         return NotaFiscal.query.filter_by(id=int(self.nota_id)).first()
@@ -102,16 +105,18 @@ class NotaFiscal(db.Model):
     __tablename__ = "NotaFiscal"
     id = db.Column(db.Integer, primary_key=True)
     codigo = db.Column(db.Integer)
-    cliente_id = db.Column(db.Integer, db.ForeignKey("Cliente.id"))
+    cliente_id = db.Column(db.Integer, db.ForeignKey("Cliente.id", ondelete="CASCADE"))
     data = db.Column(db.String(10))
-    itens = db.relationship('ItemNotaFiscal', backref='nota_do_item', overlaps="nota")
-    cliente = db.relationship('Cliente', foreign_keys=cliente_id)
+    itens = db.relationship('ItemNotaFiscal', backref='nota_do_item', overlaps="nota",
+                            cascade="all, delete", passive_deletes=True)
+    cliente = db.relationship('Cliente', foreign_keys=cliente_id,
+                              cascade="all, delete", passive_deletes=True)
 
     id_notas = 0
 
     def __init__(self, codigo, cliente_id, data):
-        self.id = NotaFiscal.idnotas
-        NotaFiscal.idnotas += 1
+        self.id = NotaFiscal.id_notas
+        NotaFiscal.id_notas += 1
         self.codigo = codigo
         self.cliente_id = cliente_id
         self.data = data
@@ -124,9 +129,10 @@ class NotaFiscal(db.Model):
                                                                                  len(self.itens))
 
     def dict(self):
-        dicionario = {'ID': self.id, 'Código': self.codigo, 'Cliente': self.cliente.nome,
-                'Data': self.data, 'QTD Itens': len(self.itens)}
-        dicionario.update(self.get_itens())
+        dicionario = {'ID': self.id, 'Código': self.codigo, 'Cliente': self.cliente.nome, 'Data': self.data,
+                      'QTD Itens': len(self.itens), 'Itens': self.get_itens()}
+
+        return dicionario
 
     def get_cliente(self):
         return Cliente.query.filter_by(id=int(self.cliente_id)).first().dict()
@@ -157,6 +163,3 @@ class NotaFiscal(db.Model):
         dict_nf["Valor Final"] = self.calcular_nota()
 
         return dict_nf
-
-
-db.create_all()

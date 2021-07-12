@@ -122,9 +122,8 @@ def create_nota(dados):
         cliente_id = int(dados["cliente_id"])
     if "data" in dados:
         data = dados["data"]
-    c = NotaFiscal(codigo, cliente_id, data)
-    print(c)
-    db.session.add(c.dict())
+
+    db.session.add(NotaFiscal(codigo, cliente_id, data))
     db.session.commit()
     return "Nota criada"
 
